@@ -1,17 +1,29 @@
-import { useState } from "react";
-import "./App.css";
+import React from "react";
+import { Box, Flex } from "@strapi/design-system";
 
-function App() {
-  const [count, setCount] = useState(0);
+const App = () => {
+  const ContentElements = ({ item }) => {
+    const elements = [];
+    for (let i = 0; i < item; i++) {
+      elements.push(<p>Item {i + 1}</p>);
+    }
+    return <>{elements}</>;
+  };
 
   return (
-    <div className="App">
-      <p className="read-the-docs">Click on the Vite and React logos to learn more {count}</p>
-      <button type="button" onClick={() => setCount(count + 1)}>
-        Increment
-      </button>
-    </div>
+    <Flex style={{ minHeight: "100%" }}>
+      <Box
+        style={{
+          height: "100vh",
+          width: "30%",
+          overflowY: "auto",
+          backgroundColor: "#f6f6f9", // Strapi'nin açık gri tonu
+          borderRight: "1px solid #e1e1e9",
+        }}>
+        <ContentElements item={100} />
+      </Box>
+    </Flex>
   );
-}
+};
 
 export default App;
