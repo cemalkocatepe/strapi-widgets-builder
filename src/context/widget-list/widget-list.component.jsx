@@ -1,13 +1,11 @@
 import React from "react";
 // Components
 import { Box, Button, Flex, IconButton, IconButtonGroup } from "@strapi/design-system";
-import widgetsData from "../../components/widgets/widget.json";
+import { Trash, Pencil, CheckCircle } from "@strapi/icons";
 // Store
 import usePageStore from "../../store/usePageStore";
 
-import { Trash, Pencil, CheckCircle } from "@strapi/icons";
-
-const WidgetListComponent = () => {
+const WidgetListComponent = ({ widgetsData }) => {
   const setActivePage = usePageStore((state) => state.setActivePage);
 
   return (
@@ -30,12 +28,12 @@ const WidgetListComponent = () => {
               <Box>
                 <IconButtonGroup>
                   <IconButton
-                    onClick={() => alert("Düzenle tıklandı!")} // Düzenle butonuna tıklandığında yapılacak işlemler
+                    onClick={() => alert("Düzenle tıklandı! ID:" + widget.id)} // Düzenle butonuna tıklandığında yapılacak işlemler
                     label="Düzenle"
                     icon={<Pencil />}
                   />
                   <IconButton
-                    onClick={() => alert("Sil tıklandı!")} // Düzenle butonuna tıklandığında yapılacak işlemler
+                    onClick={() => alert("Sil tıklandı! ID:" + widget.id)} // Düzenle butonuna tıklandığında yapılacak işlemler
                     label="Sil"
                     icon={<Trash />}
                   />
