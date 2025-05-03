@@ -1,3 +1,3 @@
-import App from "./App.jsx";
+import WidgetBuilderComponent from "./context/widget-builder/widget-builder.component";
 
-export { App };
+export { WidgetBuilderComponent };

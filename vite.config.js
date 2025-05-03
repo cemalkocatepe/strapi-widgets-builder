@@ -12,7 +12,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, "src/index.js"), // tüm component'ları dışa aktaran dosya
       name: "StrapiWidgetsBuilder",
-      fileName: (format) => `main.${format}.js`,
+      fileName: (format) => `index.${format}.js`,
       formats: ["es", "cjs", "umd"], // isteğe göre
     },
     rollupOptions: {
