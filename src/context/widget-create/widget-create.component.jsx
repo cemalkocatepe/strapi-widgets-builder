@@ -2,14 +2,17 @@ import React from "react";
 // Components
 import { Box, Flex } from "@strapi/design-system";
 import widgetsData from "../../components/widgets/widget.json";
+import usePageStore from "../../store/usePageStore";
 
 const WidgetCreateComponent = () => {
+  const setActivePage = usePageStore((state) => state.setActivePage);
+
   return (
     <>
       {widgetsData.map((widget) => {
         return (
           <Box
-            onClick={() => alert(`${widget.name} tıklandı!`)}
+            onClick={() => setActivePage("widget-edit")}
             key={widget.id}
             style={{
               padding: "10px",

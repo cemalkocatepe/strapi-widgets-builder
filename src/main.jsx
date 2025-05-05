@@ -4,12 +4,10 @@ import { DesignSystemProvider, lightTheme } from "@strapi/design-system";
 import App from "./App.jsx";
 import "./assets/css/global.css";
 
-import data from "./data/dataResult.json";
-
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <DesignSystemProvider locale="en-GB" theme={lightTheme}>
-      <App widgetsData={data.widgetData} />
+      <App />
     </DesignSystemProvider>
   </StrictMode>
 );

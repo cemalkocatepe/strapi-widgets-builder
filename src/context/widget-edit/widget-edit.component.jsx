@@ -1,7 +1,7 @@
 import React from "react";
 
 const WidgetEditComponent = () => {
-  return <div>WidgetEditComponent</div>;
+  return <div>WidgetCreateComponent</div>;
 };
 
 export default WidgetEditComponent;

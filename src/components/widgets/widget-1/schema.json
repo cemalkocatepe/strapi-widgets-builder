@@ -1,4 +1,48 @@
 {
-  "settings": {},
-  "content": {}
+  "settings": {
+    "widgetAnalyticsName": "Widget 1"
+  },
+  "content": {
+    "title": {
+      "type": "input",
+      "value": "Title of Widget 1",
+      "require": true
+    },
+    "text": {
+      "type": "textarea",
+      "value": "Title of Widget 1",
+      "require": true
+    },
+    "backgroundColor": {
+      "type": "color",
+      "value": "#ffffff",
+      "require": true
+    },
+    "items": [
+      {
+        "url": {
+          "type": "input",
+          "value": "",
+          "require": true
+        },
+        "image": {
+          "type": "image",
+          "value": "https://via.placeholder.com/150",
+          "require": true
+        }
+      },
+      {
+        "url": {
+          "type": "input",
+          "value": "",
+          "require": true
+        },
+        "image": {
+          "type": "image",
+          "value": "https://via.placeholder.com/150",
+          "require": true
+        }
+      }
+    ]
+  }
 }

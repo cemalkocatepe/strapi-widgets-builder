@@ -3,14 +3,18 @@
     "id": 1,
     "group": "boyner-ecom",
     "name": "Widget-1",
-    "description": "Widget-1 Description.",
-    "icon": "✔"
+    "description": "Widget-1 Description."
   },
   {
     "id": 2,
     "group": "boyner-ecom",
     "name": "Widget-2",
-    "description": "Widget-2 Description.",
-    "icon": "💥"
+    "description": "Widget-2 Description."
+  },
+  {
+    "id": 3,
+    "group": "boyner-ecom",
+    "name": "Widget-3",
+    "description": "Widget-3 Description."
   }
 ]
