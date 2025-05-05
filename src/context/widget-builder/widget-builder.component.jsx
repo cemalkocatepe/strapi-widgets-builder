@@ -7,15 +7,15 @@ import WidgetEditComponent from "../widget-edit/widget-edit.component";
 // Store
 import usePageStore from "../../store/usePageStore";
 
-const WidgetBuilderComponent = ({ widgetsData }) => {
+const WidgetBuilderComponent = ({ widgetsData, setWidgetsData }) => {
   const activePage = usePageStore((state) => state.activePage);
 
   return (
     <>
       <HeaderComponent />
-      {activePage == "widget-list" && <WidgetListComponent widgetsData={widgetsData} />}
-      {activePage == "widget-create" && <WidgetCreateComponent />}
-      {activePage == "widget-edit" && <WidgetEditComponent />}
+      {activePage == "widget-list" && <WidgetListComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} />}
+      {activePage == "widget-create" && <WidgetCreateComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} />}
+      {activePage == "widget-edit" && <WidgetEditComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} />}
     </>
   );
 };

@@ -1,18 +1,29 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 // Components
 import { Box, Flex } from "@strapi/design-system";
-import widgetsData from "../../components/widgets/widget.json";
+import widgetsListData from "../../components/widgets/widget.json";
 import usePageStore from "../../store/usePageStore";
 
-const WidgetCreateComponent = () => {
+const WidgetCreateComponent = ({ widgetsData, setWidgetsData }) => {
   const setActivePage = usePageStore((state) => state.setActivePage);
+
+  const handleWidgetCreate = (widgetId) => {
+    setWidgetsData([
+      ...widgetsData,
+      { id: widgetId, uuid: uuidv4(), name: "New Widget " + widgetId, description: "New Widget Description" },
+    ]);
+    setActivePage("widget-list");
+  };
 
   return (
     <>
-      {widgetsData.map((widget) => {
+      {widgetsListData.map((widget) => {
         return (
           <Box
-            onClick={() => setActivePage("widget-edit")}
+            onClick={() => {
+              handleWidgetCreate(widget.id);
+            }}
             key={widget.id}
             style={{
               padding: "10px",
