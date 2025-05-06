@@ -2,9 +2,11 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 // Components
 import { Box, Flex } from "@strapi/design-system";
-import usePageStore from "../../store/usePageStore";
+// Widgets Content
 import widgetsListSchema from "../../components/widgets/widget.json";
-import WidgetsValue from "../../components/widgets/widget-value";
+import widgetsValue from "../../components/widgets/widget-value";
+// Store
+import usePageStore from "../../store/usePageStore";
 import useWidgetStore from "../../store/useWidgetStore";
 
 const WidgetCreateComponent = ({ widgetsData, setWidgetsData }) => {
@@ -12,7 +14,7 @@ const WidgetCreateComponent = ({ widgetsData, setWidgetsData }) => {
   const setActiveWidgetData = useWidgetStore((state) => state.setActiveWidgetData);
 
   const handleWidgetCreate = (widgetId) => {
-    const widgetItemValue = WidgetsValue[widgetId]; // widgetId'ye göre widgetItemValue alıyoruz
+    const widgetItemValue = widgetsValue[widgetId]; // widgetId'ye göre widgetItemValue alıyoruz
     const widgetItem = {
       id: widgetId,
       uuid: uuidv4(),
@@ -20,7 +22,7 @@ const WidgetCreateComponent = ({ widgetsData, setWidgetsData }) => {
     };
     setWidgetsData([...widgetsData, widgetItem]); // yeni widgetItem'ı widgetsData props'a ekliyoruz
     setActiveWidgetData(widgetItem); // zustand store'a widgetItem'ı gönderiyoruz
-    setActivePage("widget-list"); // tab widget-list'e yönlendiriyoruz
+    setActivePage("widget-edit"); // tab widget-edit'e yönlendiriyoruz
   };
 
   return (
