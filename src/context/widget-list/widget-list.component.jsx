@@ -6,13 +6,21 @@ import { Trash, Pencil, CheckCircle } from "@strapi/icons";
 import { WidgetItem } from "./widget-list.styles";
 // Store
 import usePageStore from "../../store/usePageStore";
+import useWidgetStore from "../../store/useWidgetStore";
 
 const WidgetListComponent = ({ widgetsData, setWidgetsData }) => {
   const setActivePage = usePageStore((state) => state.setActivePage);
+  const setActiveWidgetData = useWidgetStore((state) => state.setActiveWidgetData);
 
   const handleWidgetItemDelete = (widgetUUID) => {
     const result = widgetsData.filter((widget) => widget.uuid !== widgetUUID);
     setWidgetsData(result);
+  };
+
+  const handleWidgetItemEdit = (widgetUUID) => {
+    const result = widgetsData.find((widget) => widget.uuid == widgetUUID);
+    setActiveWidgetData(result);
+    setActivePage("widget-edit");
   };
 
   return (
@@ -29,7 +37,7 @@ const WidgetListComponent = ({ widgetsData, setWidgetsData }) => {
                   <Box>
                     <IconButtonGroup>
                       <IconButton
-                        onClick={() => alert("Düzenle tıklandı! ID:" + widget.id)} // Düzenle butonuna tıklandığında yapılacak işlemler
+                        onClick={() => handleWidgetItemEdit(widget.uuid)} // Düzenle butonuna tıklandığında yapılacak işlemler
                         label="Düzenle"
                         icon={<Pencil />}
                       />
