@@ -2,23 +2,30 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 // Components
 import { Box, Flex } from "@strapi/design-system";
-import widgetsListData from "../../components/widgets/widget.json";
 import usePageStore from "../../store/usePageStore";
+import widgetsListSchema from "../../components/widgets/widget.json";
+import WidgetsValue from "../../components/widgets/widget-value";
+import useWidgetStore from "../../store/useWidgetStore";
 
 const WidgetCreateComponent = ({ widgetsData, setWidgetsData }) => {
   const setActivePage = usePageStore((state) => state.setActivePage);
+  const setActiveWidgetData = useWidgetStore((state) => state.setActiveWidgetData);
 
   const handleWidgetCreate = (widgetId) => {
-    setWidgetsData([
-      ...widgetsData,
-      { id: widgetId, uuid: uuidv4(), name: "New Widget " + widgetId, description: "New Widget Description" },
-    ]);
-    setActivePage("widget-list");
+    const widgetItemValue = WidgetsValue[widgetId]; // widgetId'ye göre widgetItemValue alıyoruz
+    const widgetItem = {
+      id: widgetId,
+      uuid: uuidv4(),
+      ...widgetItemValue,
+    };
+    setWidgetsData([...widgetsData, widgetItem]); // yeni widgetItem'ı widgetsData props'a ekliyoruz
+    setActiveWidgetData(widgetItem); // zustand store'a widgetItem'ı gönderiyoruz
+    setActivePage("widget-list"); // tab widget-list'e yönlendiriyoruz
   };
 
   return (
     <>
-      {widgetsListData.map((widget) => {
+      {widgetsListSchema.map((widget) => {
         return (
           <Box
             onClick={() => {

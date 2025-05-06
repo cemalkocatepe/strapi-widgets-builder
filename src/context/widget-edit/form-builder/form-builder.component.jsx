@@ -5,7 +5,7 @@ const FormBuilderComponent = ({ schema }) => {
     <div>
       {Object.entries(schema.content).map(([key, value]) => {
         if (Array.isArray(value)) {
-          return <RepeatableFieldGroup key={key} name={key} fields={value} />;
+          /* return <RepeatableFieldGroup key={key} name={key} fields={value} />; */
         }
         return <FieldRenderer key={key} name={key} field={value} />;
       })}

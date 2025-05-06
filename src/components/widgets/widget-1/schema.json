@@ -1,16 +1,44 @@
 {
   "settings": {
-    "widgetAnalyticsName": "Widget 1"
+    "widgetName": {
+      "type": "input",
+      "value": "",
+      "require": true
+    },
+    "displayOnWeb": {
+      "type": "switch",
+      "value": false
+    },
+    "displayOnMobile": {
+      "type": "switch",
+      "value": false
+    },
+    "displayOnApp": {
+      "type": "switch",
+      "value": false
+    },
+    "startedAt": {
+      "type": "input",
+      "value": ""
+    },
+    "endedAt": {
+      "type": "input",
+      "value": ""
+    }
   },
   "content": {
+    "widgetAnalyticsName": {
+      "type": "input",
+      "value": ""
+    },
     "title": {
       "type": "input",
-      "value": "Title of Widget 1",
+      "value": "",
       "require": true
     },
     "text": {
       "type": "textarea",
-      "value": "Title of Widget 1",
+      "value": "",
       "require": true
     },
     "backgroundColor": {
@@ -27,19 +55,7 @@
         },
         "image": {
           "type": "image",
-          "value": "https://via.placeholder.com/150",
-          "require": true
-        }
-      },
-      {
-        "url": {
-          "type": "input",
           "value": "",
-          "require": true
-        },
-        "image": {
-          "type": "image",
-          "value": "https://via.placeholder.com/150",
           "require": true
         }
       }

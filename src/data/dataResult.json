@@ -1,34 +1,30 @@
 {
   "widgetsData": [
     {
-      "id": 1,
-      "uuid": "1f0fe001-6fe9-4590-9a1a-7ea325faf173",
-      "name": "Widget 1",
-      "description": "This is the first widget."
-    },
-    {
       "id": 2,
-      "uuid": "1f0fe001-6fe9-4590-9a1a-7ea325faf174",
+      "uuid": "9e176a52-10f2-4df8-9b09-0ba98cd5c77a",
       "name": "Widget 2",
-      "description": "This is the first widget."
+      "displayOnWeb": false,
+      "displayOnMobile": false,
+      "displayOnApp": false,
+      "startedAt": null,
+      "endedAt": null,
+      "data": {
+        "widgetAnalyticsName": ""
+      }
     },
     {
       "id": 3,
-      "uuid": "1f0fe001-6fe9-4590-9a1a-7ea325faf175",
+      "uuid": "9e176a52-10f2-4df8-9b09-0ba98cd5c78a",
       "name": "Widget 3",
-      "description": "This is the first widget."
-    },
-    {
-      "id": 4,
-      "uuid": "1f0fe001-6fe9-4590-9a1a-7ea325faf176",
-      "name": "Widget 4",
-      "description": "This is the first widget."
-    },
-    {
-      "id": 5,
-      "uuid": "1f0fe001-6fe9-4590-9a1a-7ea325faf177",
-      "name": "Widget 5",
-      "description": "This is the first widget."
+      "displayOnWeb": false,
+      "displayOnMobile": false,
+      "displayOnApp": false,
+      "startedAt": null,
+      "endedAt": null,
+      "data": {
+        "widgetAnalyticsName": ""
+      }
     }
   ]
 }
