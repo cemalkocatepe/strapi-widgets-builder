@@ -1,4 +1,35 @@
 {
-  "settings": {},
-  "content": {}
+  "settings": {
+    "widgetName": {
+      "type": "input",
+      "value": "",
+      "require": true
+    },
+    "displayOnWeb": {
+      "type": "switch",
+      "value": false
+    },
+    "displayOnMobile": {
+      "type": "switch",
+      "value": false
+    },
+    "displayOnApp": {
+      "type": "switch",
+      "value": false
+    },
+    "startedAt": {
+      "type": "input",
+      "value": ""
+    },
+    "endedAt": {
+      "type": "input",
+      "value": ""
+    }
+  },
+  "content": {
+    "widgetAnalyticsName": {
+      "type": "input",
+      "value": ""
+    }
+  }
 }

@@ -4,7 +4,7 @@ import { Cross } from "@strapi/icons";
 import usePageStore from "../../store/usePageStore";
 
 function HeaderComponent() {
-  const setActivePage = usePageStore((state) => state.setActivePage);
+  const goToBack = usePageStore((state) => state.goToBack);
   const prevPage = usePageStore((state) => state.prevPage);
 
   return (
@@ -18,7 +18,7 @@ function HeaderComponent() {
         <Typography variant="beta" as="h1" fontWeight="bold">
           Header
         </Typography>
-        <IconButton onClick={() => setActivePage(prevPage)} label="Geri" icon={<Cross />} />
+        {prevPage.length > 0 && <IconButton onClick={() => goToBack()} label="Geri" icon={<Cross />} />}
       </Flex>
     </Box>
   );
