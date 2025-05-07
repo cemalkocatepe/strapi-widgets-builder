@@ -1,21 +1,22 @@
 import React from "react";
+import { Box, Button, Flex } from "@strapi/design-system";
+import { CheckCircle } from "@strapi/icons";
 import FormBuilderComponent from "./form-builder/form-builder.component";
-import widgetsSchema from "../../components/widgets/widget-schema";
-import widgetsValue from "../../components/widgets/widget-value";
-import useWidgetStore from "../../store/useWidgetStore";
+import usePageStore from "../../store/usePageStore";
 
 const WidgetEditComponent = ({ widgetsData, setWidgetsData }) => {
-  const activeWidgetData = useWidgetStore((state) => state.activeWidgetData);
+  const setActivePage = usePageStore((state) => state.setActivePage);
 
   return (
     <>
-      <FormBuilderComponent
-        widgetsData={widgetsData}
-        setWidgetsData={setWidgetsData}
-        widgetItemSchema={widgetsSchema[activeWidgetData.id]}
-        widgetItemValue={widgetsValue[activeWidgetData.id]}
-        activeWidgetData={activeWidgetData}
-      />
+      <FormBuilderComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} />
+      <Box style={{ padding: "12px" }}>
+        <Flex alignItems="center" justifyContent="flex-end">
+          <Button variant="default" size="M" startIcon={<CheckCircle />} onClick={() => setActivePage("widget-list")}>
+            Devam Et
+          </Button>
+        </Flex>
+      </Box>
     </>
   );
 };

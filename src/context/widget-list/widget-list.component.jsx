@@ -54,10 +54,12 @@ const WidgetListComponent = ({ widgetsData, setWidgetsData }) => {
           );
         })}
       </Reorder.Group>
-      <Box display="flex" style={{ justifyContent: "center" }}>
-        <Button variant="default" size="M" startIcon={<CheckCircle />} onClick={() => setActivePage("widget-create")}>
-          Yeni Bölüm
-        </Button>
+      <Box>
+        <Flex alignItems="center" justifyContent="center">
+          <Button variant="default" size="M" startIcon={<CheckCircle />} onClick={() => setActivePage("widget-create")}>
+            Yeni Bölüm
+          </Button>
+        </Flex>
       </Box>
     </>
   );

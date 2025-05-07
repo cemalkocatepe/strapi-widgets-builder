@@ -1,6 +1,23 @@
 {
   "widgetsData": [
     {
+      "id": 1,
+      "uuid": "d67c1b08-4a05-4b26-bd85-3cabe5cb3c3f",
+      "name": "Widget 1",
+      "displayOnWeb": false,
+      "displayOnMobile": false,
+      "displayOnApp": false,
+      "startedAt": null,
+      "endedAt": null,
+      "data": {
+        "widgetAnalyticsName": "",
+        "title": "",
+        "text": "",
+        "backgroundColor": "#00000",
+        "items": []
+      }
+    },
+    {
       "id": 2,
       "uuid": "9e176a52-10f2-4df8-9b09-0ba98cd5c77a",
       "name": "Widget 2",
@@ -10,7 +27,7 @@
       "startedAt": null,
       "endedAt": null,
       "data": {
-        "widgetAnalyticsName": ""
+        "widgetAnalyticsName": "test"
       }
     },
     {
