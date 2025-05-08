@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button, Flex, IconButton, IconButtonGroup } from "@strapi/design-system";
 import { Pencil, CheckCircle } from "@strapi/icons";
 import FormContentComponent from "./form-content/form-content.component";
 import FormSettingsComponent from "./form-settings/form-settings.component";
 import { TabItem } from "./widget-edit.styles";
 import usePageStore from "../../store/usePageStore";
+import useWidgetStore from "../../store/useWidgetStore";
 
 const TABS = {
   SETTINGS: "settings",
@@ -60,9 +61,20 @@ const TabSelector = ({ tabs, onSelect }) =>
 
 const WidgetEditComponent = ({ widgetsData, setWidgetsData }) => {
   const setActivePage = usePageStore((state) => state.setActivePage);
+  const activeWidgetData = useWidgetStore((state) => state.activeWidgetData);
   const [activeTab, setActiveTab] = useState("");
 
   const handleContinue = () => setActivePage("widget-list");
+
+  useEffect(() => {
+    const editWidgetsData = widgetsData.map((widget) => {
+      if (widget.uuid === activeWidgetData.uuid) {
+        return { ...widget, ...activeWidgetData };
+      }
+      return widget;
+    });
+    setWidgetsData(editWidgetsData);
+  }, [activeWidgetData]);
 
   const renderTabContent = () => {
     switch (activeTab) {

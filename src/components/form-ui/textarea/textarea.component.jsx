@@ -3,9 +3,8 @@ import { startCase } from "lodash/string";
 import { Box, Field, FieldLabel, FieldError, Textarea } from "@strapi/design-system";
 
 const TextareaComponent = (props) => {
-  const [inputValue, setInputValue] = useState(
-    props.formType === "content" ? props.activeWidgetData.data[props.name] : props.activeWidgetData[props.name]
-  );
+  const initialInputValue = props.formType === "content" ? props.activeWidgetData.data[props.name] : props.activeWidgetData[props.name];
+  const [inputValue, setInputValue] = useState(initialInputValue);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {

@@ -3,9 +3,8 @@ import { startCase } from "lodash/string";
 import { Field, FieldLabel, Switch, FieldError, Box } from "@strapi/design-system";
 
 const SwitchComponent = (props) => {
-  const [inputValue, setInputValue] = useState(
-    props.formType === "content" ? props.activeWidgetData.data[props.name] : props.activeWidgetData[props.name]
-  );
+  const initialInputValue = props.formType === "content" ? props.activeWidgetData.data[props.name] : props.activeWidgetData[props.name];
+  const [inputValue, setInputValue] = useState(initialInputValue);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
