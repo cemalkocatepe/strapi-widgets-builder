@@ -4,11 +4,11 @@
       "id": 1,
       "uuid": "d67c1b08-4a05-4b26-bd85-3cabe5cb3c3f",
       "name": "Widget 1",
-      "displayOnWeb": false,
+      "displayOnWeb": true,
       "displayOnMobile": false,
       "displayOnApp": false,
-      "startedAt": null,
-      "endedAt": null,
+      "startedAt": "",
+      "endedAt": "",
       "data": {
         "widgetAnalyticsName": "",
         "title": "",
@@ -24,8 +24,8 @@
       "displayOnWeb": false,
       "displayOnMobile": false,
       "displayOnApp": false,
-      "startedAt": null,
-      "endedAt": null,
+      "startedAt": "",
+      "endedAt": "",
       "data": {
         "widgetAnalyticsName": "test"
       }
@@ -37,8 +37,8 @@
       "displayOnWeb": false,
       "displayOnMobile": false,
       "displayOnApp": false,
-      "startedAt": null,
-      "endedAt": null,
+      "startedAt": "",
+      "endedAt": "",
       "data": {
         "widgetAnalyticsName": ""
       }

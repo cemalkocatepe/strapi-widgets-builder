@@ -1,8 +1,8 @@
 import React from "react";
-import { ColorField, InputField, SwitchField, TextareaField } from "../../../components/form-ui";
+import { ColorField, DateTimeField, InputField, SwitchField, TextareaField } from "../../../components/form-ui";
 
-const FormFieldComponent = ({ name, field, activeWidgetData, setActiveWidgetData }) => {
-  const props = { name, activeWidgetData, setActiveWidgetData, ...field };
+const FormFieldComponent = ({ name, formType, activeWidgetData, setActiveWidgetData, field }) => {
+  const props = { name, formType, activeWidgetData, setActiveWidgetData, ...field };
 
   switch (field.type) {
     case "input":
@@ -13,6 +13,8 @@ const FormFieldComponent = ({ name, field, activeWidgetData, setActiveWidgetData
       return <ColorField {...props} />;
     case "switch":
       return <SwitchField {...props} />;
+    case "datetime":
+      return <DateTimeField {...props} />;
     default:
       return null;
   }

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { startCase } from "lodash/string";
-import { Field, FieldLabel, Switch, FieldError, Box } from "@strapi/design-system";
+import { Field, FieldLabel, FieldInput, FieldError, Box } from "@strapi/design-system";
 
-const SwitchComponent = (props) => {
+const InputComponent = (props) => {
   const [inputValue, setInputValue] = useState(
     props.formType === "content" ? props.activeWidgetData.data[props.name] : props.activeWidgetData[props.name]
   );
@@ -16,8 +16,8 @@ const SwitchComponent = (props) => {
     }
   }, [inputValue, props.require]);
 
-  const handleChangeField = () => {
-    const value = !inputValue;
+  const handleChangeField = (e) => {
+    const value = e.target.value;
     setInputValue(value);
     if (props.formType === "content") {
       props.setActiveWidgetData({ ...props.activeWidgetData, data: { ...props.activeWidgetData.data, [props.name]: value } });
@@ -30,11 +30,11 @@ const SwitchComponent = (props) => {
     <Box padding={3}>
       <Field name={props.name} required={props.require} error={isError}>
         <FieldLabel style={{ marginBottom: 10, fontSize: 12 }}>{startCase(props.name)}</FieldLabel>
-        <Switch selected={inputValue} onChange={handleChangeField} />
+        <FieldInput type="datetime-local" placeholder="Please fill this area" value={inputValue} onChange={handleChangeField} />
         <FieldError />
       </Field>
     </Box>
   );
 };
 
-export default SwitchComponent;
+export default InputComponent;

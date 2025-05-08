@@ -3,8 +3,8 @@ export default {
   displayOnWeb: false,
   displayOnMobile: false,
   displayOnApp: false,
-  startedAt: null,
-  endedAt: null,
+  startedAt: "",
+  endedAt: "",
   data: {
     widgetAnalyticsName: "",
   },

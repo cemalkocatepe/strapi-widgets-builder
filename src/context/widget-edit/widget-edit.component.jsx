@@ -1,24 +1,81 @@
-import React from "react";
-import { Box, Button, Flex } from "@strapi/design-system";
-import { CheckCircle } from "@strapi/icons";
-import FormBuilderComponent from "./form-builder/form-builder.component";
+import React, { useState } from "react";
+import { Box, Button, Flex, IconButton, IconButtonGroup } from "@strapi/design-system";
+import { Pencil, CheckCircle } from "@strapi/icons";
+import FormContentComponent from "./form-content/form-content.component";
+import FormSettingsComponent from "./form-settings/form-settings.component";
+import { TabItem } from "./widget-edit.styles";
 import usePageStore from "../../store/usePageStore";
+
+const TABS = {
+  SETTINGS: "settings",
+  CONTENT: "content",
+};
+
+const tabsMenu = [
+  { id: TABS.SETTINGS, name: "Settings" },
+  { id: TABS.CONTENT, name: "Content" },
+];
+
+const SettingsComponent = ({ widgetsData, setWidgetsData, handleContinue }) => (
+  <>
+    <FormSettingsComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} />
+    <Box style={{ padding: "12px" }}>
+      <Flex alignItems="center" justifyContent="flex-end">
+        <Button variant="default" size="M" startIcon={<CheckCircle />} onClick={handleContinue}>
+          Devam Et
+        </Button>
+      </Flex>
+    </Box>
+  </>
+);
+
+const ContentComponent = ({ widgetsData, setWidgetsData, handleContinue }) => (
+  <>
+    <FormContentComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} />
+    <Box style={{ padding: "12px" }}>
+      <Flex alignItems="center" justifyContent="flex-end">
+        <Button variant="default" size="M" startIcon={<CheckCircle />} onClick={handleContinue}>
+          Devam Et
+        </Button>
+      </Flex>
+    </Box>
+  </>
+);
+
+const TabSelector = ({ tabs, onSelect }) =>
+  tabs.map((tab) => (
+    <TabItem key={tab.id}>
+      <Flex alignItems="center" justifyContent="space-between">
+        <Box>
+          <h3>{tab.name}</h3>
+        </Box>
+        <Box>
+          <IconButtonGroup>
+            <IconButton onClick={() => onSelect(tab.id)} label="Düzenle" icon={<Pencil />} />
+          </IconButtonGroup>
+        </Box>
+      </Flex>
+    </TabItem>
+  ));
 
 const WidgetEditComponent = ({ widgetsData, setWidgetsData }) => {
   const setActivePage = usePageStore((state) => state.setActivePage);
+  const [activeTab, setActiveTab] = useState("");
 
-  return (
-    <>
-      <FormBuilderComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} />
-      <Box style={{ padding: "12px" }}>
-        <Flex alignItems="center" justifyContent="flex-end">
-          <Button variant="default" size="M" startIcon={<CheckCircle />} onClick={() => setActivePage("widget-list")}>
-            Devam Et
-          </Button>
-        </Flex>
-      </Box>
-    </>
-  );
+  const handleContinue = () => setActivePage("widget-list");
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case TABS.SETTINGS:
+        return <SettingsComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} handleContinue={handleContinue} />;
+      case TABS.CONTENT:
+        return <ContentComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} handleContinue={handleContinue} />;
+      default:
+        return <TabSelector tabs={tabsMenu} onSelect={setActiveTab} />;
+    }
+  };
+
+  return <>{renderTabContent()}</>;
 };
 
 export default WidgetEditComponent;

@@ -3,7 +3,9 @@ import { startCase } from "lodash/string";
 import { Box, Field, FieldLabel, FieldError, Textarea } from "@strapi/design-system";
 
 const TextareaComponent = (props) => {
-  const [inputValue, setInputValue] = useState(props.activeWidgetData.data[props.name]);
+  const [inputValue, setInputValue] = useState(
+    props.formType === "content" ? props.activeWidgetData.data[props.name] : props.activeWidgetData[props.name]
+  );
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -15,8 +17,13 @@ const TextareaComponent = (props) => {
   }, [inputValue, props.require]);
 
   const handleChangeField = (e) => {
-    setInputValue(e.target.value);
-    props.setActiveWidgetData({ ...props.activeWidgetData, data: { ...props.activeWidgetData.data, [props.name]: e.target.value } });
+    const value = e.target.value;
+    setInputValue(value);
+    if (props.formType === "content") {
+      props.setActiveWidgetData({ ...props.activeWidgetData, data: { ...props.activeWidgetData.data, [props.name]: value } });
+    } else {
+      props.setActiveWidgetData({ ...props.activeWidgetData, [props.name]: value });
+    }
   };
 
   return (

@@ -1,6 +1,6 @@
 {
   "settings": {
-    "widgetName": {
+    "name": {
       "type": "input",
       "require": true
     },
@@ -14,10 +14,10 @@
       "type": "switch"
     },
     "startedAt": {
-      "type": "input"
+      "type": "datetime"
     },
     "endedAt": {
-      "type": "input"
+      "type": "datetime"
     }
   },
   "content": {
