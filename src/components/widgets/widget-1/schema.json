@@ -34,7 +34,6 @@
     },
     "backgroundColor": {
       "type": "color",
-      "value": "#ffffff",
       "require": true
     },
     "items": {
@@ -45,7 +44,7 @@
           "require": true
         },
         "image": {
-          "type": "image",
+          "type": "input",
           "require": true
         }
       }

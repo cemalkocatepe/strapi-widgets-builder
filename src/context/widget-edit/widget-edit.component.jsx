@@ -59,9 +59,10 @@ const TabSelector = ({ tabs, onSelect }) =>
     </TabItem>
   ));
 
-const WidgetEditComponent = ({ widgetsData, setWidgetsData }) => {
+const WidgetEditComponent = ({ widgetsData, setWidgetsData, onIsValidate }) => {
   const setActivePage = usePageStore((state) => state.setActivePage);
   const activeWidgetData = useWidgetStore((state) => state.activeWidgetData);
+  const isValidate = useWidgetStore((state) => state.isValidate);
   const [activeTab, setActiveTab] = useState("");
 
   const handleContinue = () => setActivePage("widget-list");
@@ -75,6 +76,10 @@ const WidgetEditComponent = ({ widgetsData, setWidgetsData }) => {
     });
     setWidgetsData(editWidgetsData);
   }, [activeWidgetData]);
+
+  useEffect(() => {
+    onIsValidate(isValidate);
+  }, [isValidate]);
 
   const renderTabContent = () => {
     switch (activeTab) {

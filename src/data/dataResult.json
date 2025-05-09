@@ -14,7 +14,18 @@
         "title": "",
         "text": "",
         "backgroundColor": "#000000",
-        "items": []
+        "items": [
+          {
+            "uuid": "d67c1b08-4a05-4b26-bd85-3cabe5cb3c32",
+            "url": "",
+            "image": ""
+          },
+          {
+            "uuid": "d67c1b08-4a05-4b26-bd85-3cabe5cb3c332",
+            "url": "",
+            "image": ""
+          }
+        ]
       }
     },
     {

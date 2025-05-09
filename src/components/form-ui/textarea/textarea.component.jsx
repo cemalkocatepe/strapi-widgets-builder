@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { startCase } from "lodash/string";
+import { uniq } from "lodash/array";
 import { Box, Field, FieldLabel, FieldError, Textarea } from "@strapi/design-system";
+import useWidgetStore from "../../../store/useWidgetStore";
 
 const TextareaComponent = (props) => {
   const initialInputValue = props.formType === "content" ? props.activeWidgetData.data[props.name] : props.activeWidgetData[props.name];
+  const isValidate = useWidgetStore((state) => state.isValidate);
+  const setIsValidate = useWidgetStore((state) => state.setIsValidate);
   const [inputValue, setInputValue] = useState(initialInputValue);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     if (props.require && !inputValue) {
-      setIsError(true);
+      setIsError("This field is required");
+      setIsValidate(uniq([...isValidate, props.name]));
     } else {
       setIsError(false);
+      setIsValidate(isValidate.filter((item) => item !== props.name));
     }
   }, [inputValue, props.require]);
 
@@ -36,7 +42,6 @@ const TextareaComponent = (props) => {
           error={isError}
           onChange={handleChangeField}
         />
-        <FieldError />
       </Field>
     </Box>
   );
