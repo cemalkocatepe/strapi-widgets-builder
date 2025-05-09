@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Flex, IconButton, IconButtonGroup } from "@strapi/design-system";
-import { Pencil, CheckCircle } from "@strapi/icons";
+// Components
+import { Box, Flex, IconButton, IconButtonGroup } from "@strapi/design-system";
+import { Pencil } from "@strapi/icons";
+import { TabItem } from "./widget-edit.styles";
 import FormContentComponent from "./form-content/form-content.component";
 import FormSettingsComponent from "./form-settings/form-settings.component";
-import { TabItem } from "./widget-edit.styles";
-import usePageStore from "../../store/usePageStore";
+// Store
 import useWidgetStore from "../../store/useWidgetStore";
 
 const TABS = {
@@ -17,29 +18,15 @@ const tabsMenu = [
   { id: TABS.CONTENT, name: "Content" },
 ];
 
-const SettingsComponent = ({ widgetsData, setWidgetsData, handleContinue, isValidate }) => (
+const SettingsComponent = ({ widgetsData, setWidgetsData }) => (
   <>
     <FormSettingsComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} />
-    <Box style={{ padding: "12px" }}>
-      <Flex alignItems="center" justifyContent="flex-end">
-        <Button variant="default" size="M" startIcon={<CheckCircle />} onClick={handleContinue} disabled={isValidate.length > 0}>
-          Devam Et
-        </Button>
-      </Flex>
-    </Box>
   </>
 );
 
-const ContentComponent = ({ widgetsData, setWidgetsData, handleContinue, isValidate }) => (
+const ContentComponent = ({ widgetsData, setWidgetsData }) => (
   <>
     <FormContentComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} />
-    <Box style={{ padding: "12px" }}>
-      <Flex alignItems="center" justifyContent="flex-end">
-        <Button variant="default" size="M" startIcon={<CheckCircle />} onClick={handleContinue} disabled={isValidate.length > 0}>
-          Devam Et
-        </Button>
-      </Flex>
-    </Box>
   </>
 );
 
@@ -62,22 +49,19 @@ const TabSelector = ({ tabs, onSelect }) =>
   ));
 
 const WidgetEditComponent = ({ widgetsData, setWidgetsData, onIsValidate }) => {
-  const setActivePage = usePageStore((state) => state.setActivePage);
-  const activeWidgetData = useWidgetStore((state) => state.activeWidgetData);
+  const editWidgetData = useWidgetStore((state) => state.editWidgetData);
   const isValidate = useWidgetStore((state) => state.isValidate);
   const [activeTab, setActiveTab] = useState("");
 
-  const handleContinue = () => setActivePage("widget-list");
-
   useEffect(() => {
     const editWidgetsData = widgetsData.map((widget) => {
-      if (widget.uuid === activeWidgetData.uuid) {
-        return { ...widget, ...activeWidgetData };
+      if (widget.uuid === editWidgetData.uuid) {
+        return { ...widget, ...editWidgetData };
       }
       return widget;
     });
     setWidgetsData(editWidgetsData);
-  }, [activeWidgetData]);
+  }, [editWidgetData]);
 
   useEffect(() => {
     onIsValidate(isValidate);
@@ -86,23 +70,9 @@ const WidgetEditComponent = ({ widgetsData, setWidgetsData, onIsValidate }) => {
   const renderTabContent = () => {
     switch (activeTab) {
       case TABS.SETTINGS:
-        return (
-          <SettingsComponent
-            widgetsData={widgetsData}
-            setWidgetsData={setWidgetsData}
-            handleContinue={handleContinue}
-            isValidate={isValidate}
-          />
-        );
+        return <SettingsComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} />;
       case TABS.CONTENT:
-        return (
-          <ContentComponent
-            widgetsData={widgetsData}
-            setWidgetsData={setWidgetsData}
-            handleContinue={handleContinue}
-            isValidate={isValidate}
-          />
-        );
+        return <ContentComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} />;
       default:
         return <TabSelector tabs={tabsMenu} onSelect={setActiveTab} />;
     }

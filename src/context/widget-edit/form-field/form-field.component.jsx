@@ -1,8 +1,8 @@
 import React from "react";
 import { ColorField, DateTimeField, InputField, SwitchField, TextareaField } from "../../../components/form-ui";
 
-const FormFieldComponent = ({ name, formType, activeWidgetData, setActiveWidgetData, field }) => {
-  const props = { name, formType, activeWidgetData, setActiveWidgetData, ...field };
+const FormFieldComponent = ({ name, formType, editWidgetData, setEditWidgetData, field }) => {
+  const props = { name, formType, editWidgetData, setEditWidgetData, ...field };
 
   switch (field.type) {
     case "input":

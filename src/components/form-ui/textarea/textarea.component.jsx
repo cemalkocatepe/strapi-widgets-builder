@@ -5,7 +5,7 @@ import { Box, Field, Textarea } from "@strapi/design-system";
 import useWidgetStore from "../../../store/useWidgetStore";
 
 const TextareaComponent = (props) => {
-  const initialInputValue = props.formType === "content" ? props.activeWidgetData.data[props.name] : props.activeWidgetData[props.name];
+  const initialInputValue = props.formType === "content" ? props.editWidgetData.data[props.name] : props.editWidgetData[props.name];
   const isValidate = useWidgetStore((state) => state.isValidate);
   const setIsValidate = useWidgetStore((state) => state.setIsValidate);
   const [inputValue, setInputValue] = useState(initialInputValue);
@@ -25,9 +25,9 @@ const TextareaComponent = (props) => {
     const value = e.target.value;
     setInputValue(value);
     if (props.formType === "content") {
-      props.setActiveWidgetData({ ...props.activeWidgetData, data: { ...props.activeWidgetData.data, [props.name]: value } });
+      props.setEditWidgetData({ ...props.editWidgetData, data: { ...props.editWidgetData.data, [props.name]: value } });
     } else {
-      props.setActiveWidgetData({ ...props.activeWidgetData, [props.name]: value });
+      props.setEditWidgetData({ ...props.editWidgetData, [props.name]: value });
     }
   };
 
@@ -35,13 +35,8 @@ const TextareaComponent = (props) => {
     <Box padding={3}>
       <Field.Root name={props.name} required={props.require} error={isError}>
         <Field.Label style={{ marginBottom: 10, fontSize: 12 }}>{startCase(props.name)}</Field.Label>
-        <Textarea
-          placeholder="Please fill this area"
-          value={inputValue}
-          required={props.require}
-          error={isError}
-          onChange={handleChangeField}
-        />
+        <Textarea placeholder="Please fill this area" value={inputValue} onChange={handleChangeField} />
+        <Field.Error />
       </Field.Root>
     </Box>
   );

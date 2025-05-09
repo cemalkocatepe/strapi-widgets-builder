@@ -2,6 +2,7 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 // Components
 import { Box, Flex } from "@strapi/design-system";
+import { WidgetItem } from "./widget-create.styles";
 // Widgets Content
 import widgetsListSchema from "../../components/widgets/widget.json";
 import widgetsValue from "../../components/widgets/widget-value";
@@ -11,7 +12,7 @@ import useWidgetStore from "../../store/useWidgetStore";
 
 const WidgetCreateComponent = ({ widgetsData, setWidgetsData }) => {
   const setActivePage = usePageStore((state) => state.setActivePage);
-  const setActiveWidgetData = useWidgetStore((state) => state.setActiveWidgetData);
+  const setEditWidgetData = useWidgetStore((state) => state.setEditWidgetData);
 
   const handleWidgetCreate = (widgetId) => {
     const widgetItemValue = widgetsValue[widgetId];
@@ -21,7 +22,7 @@ const WidgetCreateComponent = ({ widgetsData, setWidgetsData }) => {
       ...widgetItemValue,
     };
     setWidgetsData([...widgetsData, widgetItem]);
-    setActiveWidgetData(widgetItem);
+    setEditWidgetData(widgetItem);
     setActivePage("widget-edit");
   };
 
@@ -29,25 +30,18 @@ const WidgetCreateComponent = ({ widgetsData, setWidgetsData }) => {
     <>
       {widgetsListSchema.map((widget) => {
         return (
-          <Box
+          <WidgetItem
             onClick={() => {
               handleWidgetCreate(widget.id);
             }}
-            key={widget.id}
-            style={{
-              padding: "10px",
-              margin: "10px",
-              backgroundColor: "#fff",
-              borderRadius: "8px",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-            }}>
+            key={widget.id}>
             <Flex alignItems="center" justifyContent="space-between">
               <Box>
                 <h3>{widget.name}</h3>
                 <h3>{widget.description}</h3>
               </Box>
             </Flex>
-          </Box>
+          </WidgetItem>
         );
       })}
     </>

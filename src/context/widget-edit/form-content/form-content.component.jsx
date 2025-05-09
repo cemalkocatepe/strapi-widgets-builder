@@ -1,13 +1,16 @@
 import React from "react";
+// Components
 import FormFieldComponent from "../form-field/form-field.component";
 import FormRepeatComponent from "../form-repeat/form-repeat.component";
+// Widget Content
 import widgetsSchema from "../../../components/widgets/widget-schema";
+// Store
 import useWidgetStore from "../../../store/useWidgetStore";
 
 const FormContentComponent = () => {
-  const activeWidgetData = useWidgetStore((state) => state.activeWidgetData);
-  const setActiveWidgetData = useWidgetStore((state) => state.setActiveWidgetData);
-  const widgetItemSchema = widgetsSchema[activeWidgetData.id];
+  const editWidgetData = useWidgetStore((state) => state.editWidgetData);
+  const setEditWidgetData = useWidgetStore((state) => state.setEditWidgetData);
+  const widgetItemSchema = widgetsSchema[editWidgetData.id];
 
   return (
     <div>
@@ -18,8 +21,8 @@ const FormContentComponent = () => {
               key={key}
               name={key}
               formType="content"
-              activeWidgetData={activeWidgetData}
-              setActiveWidgetData={setActiveWidgetData}
+              editWidgetData={editWidgetData}
+              setEditWidgetData={setEditWidgetData}
               field={value}
             />
           );
@@ -29,8 +32,8 @@ const FormContentComponent = () => {
             key={key}
             name={key}
             formType="content"
-            activeWidgetData={activeWidgetData}
-            setActiveWidgetData={setActiveWidgetData}
+            editWidgetData={editWidgetData}
+            setEditWidgetData={setEditWidgetData}
             field={value}
           />
         );

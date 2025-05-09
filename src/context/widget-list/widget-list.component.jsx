@@ -10,16 +10,16 @@ import useWidgetStore from "../../store/useWidgetStore";
 
 const WidgetListComponent = ({ widgetsData, setWidgetsData }) => {
   const setActivePage = usePageStore((state) => state.setActivePage);
-  const setActiveWidgetData = useWidgetStore((state) => state.setActiveWidgetData);
+  const setEditWidgetData = useWidgetStore((state) => state.setEditWidgetData);
 
-  const handleWidgetItemDelete = (widgetUUID) => {
+  const handleWidgetDelete = (widgetUUID) => {
     const result = widgetsData.filter((widget) => widget.uuid !== widgetUUID);
     setWidgetsData(result);
   };
 
-  const handleWidgetItemEdit = (widgetUUID) => {
-    const result = widgetsData.find((widget) => widget.uuid == widgetUUID);
-    setActiveWidgetData(result);
+  const handleWidgetEdit = (widgetUUID) => {
+    const editWidget = widgetsData.find((widget) => widget.uuid == widgetUUID);
+    setEditWidgetData(editWidget);
     setActivePage("widget-edit");
   };
 
@@ -37,12 +37,12 @@ const WidgetListComponent = ({ widgetsData, setWidgetsData }) => {
                   <Box>
                     <IconButtonGroup>
                       <IconButton
-                        onClick={() => handleWidgetItemEdit(widget.uuid)} // Düzenle butonuna tıklandığında yapılacak işlemler
+                        onClick={() => handleWidgetEdit(widget.uuid)} // Düzenle butonuna tıklandığında yapılacak işlemler
                         label="Düzenle">
                         <Pencil />
                       </IconButton>
                       <IconButton
-                        onClick={() => handleWidgetItemDelete(widget.uuid)} // Sil butonuna tıklandığında yapılacak işlemler
+                        onClick={() => handleWidgetDelete(widget.uuid)} // Sil butonuna tıklandığında yapılacak işlemler
                         label="Sil">
                         <Trash />
                       </IconButton>

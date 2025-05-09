@@ -8,14 +8,14 @@ import { Item } from "./form-repeat.styles";
 
 import widgetsSchema from "../../../components/widgets/widget-schema";
 
-const FormRepeatComponent = ({ name, /* formType, */ activeWidgetData, setActiveWidgetData /* field */ }) => {
+const FormRepeatComponent = ({ name, /* formType, */ editWidgetData, setEditWidgetData /* field */ }) => {
   const handleOrderItems = (result) => {
-    setActiveWidgetData({ ...activeWidgetData, data: { ...activeWidgetData.data, [name]: result } });
+    setEditWidgetData({ ...editWidgetData, data: { ...editWidgetData.data, [name]: result } });
   };
 
   const handleWidgetItemDelete = (widgetUUID) => {
-    const result = activeWidgetData.data[name].filter((widget) => widget.uuid !== widgetUUID);
-    setActiveWidgetData({ ...activeWidgetData, data: { ...activeWidgetData.data, [name]: result } });
+    const result = editWidgetData.data[name].filter((widget) => widget.uuid !== widgetUUID);
+    setEditWidgetData({ ...editWidgetData, data: { ...editWidgetData.data, [name]: result } });
   };
 
   const handleWidgetItemEdit = (widgetUUID) => {
@@ -33,13 +33,13 @@ const FormRepeatComponent = ({ name, /* formType, */ activeWidgetData, setActive
       ...itemValue,
     };
 
-    setActiveWidgetData({ ...activeWidgetData, data: { ...activeWidgetData.data, [name]: [...activeWidgetData.data[name], item] } });
+    setEditWidgetData({ ...editWidgetData, data: { ...editWidgetData.data, [name]: [...editWidgetData.data[name], item] } });
   };
 
   return (
     <>
-      <Reorder.Group as="div" axis="y" values={activeWidgetData.data[name]} onReorder={handleOrderItems}>
-        {activeWidgetData.data[name].map((item, index) => {
+      <Reorder.Group as="div" axis="y" values={editWidgetData.data[name]} onReorder={handleOrderItems}>
+        {editWidgetData.data[name].map((item, index) => {
           return (
             <Reorder.Item as="div" key={item.uuid} value={item} whileDrag={{ opacity: 0.4 }}>
               <Item>
@@ -72,7 +72,7 @@ const FormRepeatComponent = ({ name, /* formType, */ activeWidgetData, setActive
       <Flex alignItems="center" justifyContent="center">
         <IconButton
           variant="secondary"
-          onClick={() => handleWidgetItemAdd(activeWidgetData.id)} // Düzenle butonuna tıklandığında yapılacak işlemler
+          onClick={() => handleWidgetItemAdd(editWidgetData.id)} // Düzenle butonuna tıklandığında yapılacak işlemler
           label="Ekle">
           <Plus />
         </IconButton>

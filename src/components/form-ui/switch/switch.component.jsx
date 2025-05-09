@@ -5,7 +5,7 @@ import useWidgetStore from "../../../store/useWidgetStore";
 import { uniq } from "lodash/array";
 
 const SwitchComponent = (props) => {
-  const initialInputValue = props.formType === "content" ? props.activeWidgetData.data[props.name] : props.activeWidgetData[props.name];
+  const initialInputValue = props.formType === "content" ? props.editWidgetData.data[props.name] : props.editWidgetData[props.name];
   const isValidate = useWidgetStore((state) => state.isValidate);
   const setIsValidate = useWidgetStore((state) => state.setIsValidate);
   const [inputValue, setInputValue] = useState(initialInputValue);
@@ -25,9 +25,9 @@ const SwitchComponent = (props) => {
     const value = !inputValue;
     setInputValue(value);
     if (props.formType === "content") {
-      props.setActiveWidgetData({ ...props.activeWidgetData, data: { ...props.activeWidgetData.data, [props.name]: value } });
+      props.setEditWidgetData({ ...props.editWidgetData, data: { ...props.editWidgetData.data, [props.name]: value } });
     } else {
-      props.setActiveWidgetData({ ...props.activeWidgetData, [props.name]: value });
+      props.setEditWidgetData({ ...props.editWidgetData, [props.name]: value });
     }
   };
 
