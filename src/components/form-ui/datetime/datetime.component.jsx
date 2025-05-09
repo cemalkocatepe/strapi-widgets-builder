@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { startCase } from "lodash/string";
-import { Field, FieldLabel, FieldInput, FieldError, Box } from "@strapi/design-system";
+import { Field, Box } from "@strapi/design-system";
 import useWidgetStore from "../../../store/useWidgetStore";
 import { uniq } from "lodash/array";
 
@@ -33,11 +33,11 @@ const InputComponent = (props) => {
 
   return (
     <Box padding={3}>
-      <Field name={props.name} required={props.require} error={isError}>
-        <FieldLabel style={{ marginBottom: 10, fontSize: 12 }}>{startCase(props.name)}</FieldLabel>
-        <FieldInput type="datetime-local" placeholder="Please fill this area" value={inputValue} onChange={handleChangeField} />
-        <FieldError />
-      </Field>
+      <Field.Root name={props.name} required={props.require} error={isError}>
+        <Field.Label style={{ marginBottom: 10, fontSize: 12 }}>{startCase(props.name)}</Field.Label>
+        <Field.Input type="datetime-local" placeholder="Please fill this area" value={inputValue} onChange={handleChangeField} />
+        <Field.Error />
+      </Field.Root>
     </Box>
   );
 };

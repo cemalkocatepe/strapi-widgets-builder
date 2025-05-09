@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { startCase } from "lodash/string";
 import { uniq } from "lodash/array";
-import { Box, Field, FieldLabel, FieldInput, FieldError } from "@strapi/design-system";
+import { Box, Field } from "@strapi/design-system";
 import useWidgetStore from "../../../store/useWidgetStore";
 
 const InputComponent = (props) => {
@@ -33,11 +33,11 @@ const InputComponent = (props) => {
 
   return (
     <Box padding={3}>
-      <Field name={props.name} required={props.require} error={isError}>
-        <FieldLabel style={{ marginBottom: 10, fontSize: 12 }}>{startCase(props.name)}</FieldLabel>
-        <FieldInput type="text" placeholder="Please fill this area" value={inputValue} onChange={handleChangeField} />
-        <FieldError />
-      </Field>
+      <Field.Root name={props.name} required={props.require} error={isError}>
+        <Field.Label style={{ marginBottom: 10, fontSize: 12 }}>{startCase(props.name)}</Field.Label>
+        <Field.Input type="text" placeholder="Please fill this area" value={inputValue} onChange={handleChangeField} />
+        <Field.Error />
+      </Field.Root>
     </Box>
   );
 };

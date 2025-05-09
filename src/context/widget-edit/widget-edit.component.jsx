@@ -17,12 +17,12 @@ const tabsMenu = [
   { id: TABS.CONTENT, name: "Content" },
 ];
 
-const SettingsComponent = ({ widgetsData, setWidgetsData, handleContinue }) => (
+const SettingsComponent = ({ widgetsData, setWidgetsData, handleContinue, isValidate }) => (
   <>
     <FormSettingsComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} />
     <Box style={{ padding: "12px" }}>
       <Flex alignItems="center" justifyContent="flex-end">
-        <Button variant="default" size="M" startIcon={<CheckCircle />} onClick={handleContinue}>
+        <Button variant="default" size="M" startIcon={<CheckCircle />} onClick={handleContinue} disabled={isValidate.length > 0}>
           Devam Et
         </Button>
       </Flex>
@@ -30,12 +30,12 @@ const SettingsComponent = ({ widgetsData, setWidgetsData, handleContinue }) => (
   </>
 );
 
-const ContentComponent = ({ widgetsData, setWidgetsData, handleContinue }) => (
+const ContentComponent = ({ widgetsData, setWidgetsData, handleContinue, isValidate }) => (
   <>
     <FormContentComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} />
     <Box style={{ padding: "12px" }}>
       <Flex alignItems="center" justifyContent="flex-end">
-        <Button variant="default" size="M" startIcon={<CheckCircle />} onClick={handleContinue}>
+        <Button variant="default" size="M" startIcon={<CheckCircle />} onClick={handleContinue} disabled={isValidate.length > 0}>
           Devam Et
         </Button>
       </Flex>
@@ -52,7 +52,9 @@ const TabSelector = ({ tabs, onSelect }) =>
         </Box>
         <Box>
           <IconButtonGroup>
-            <IconButton onClick={() => onSelect(tab.id)} label="Düzenle" icon={<Pencil />} />
+            <IconButton onClick={() => onSelect(tab.id)} label="Düzenle">
+              <Pencil />
+            </IconButton>
           </IconButtonGroup>
         </Box>
       </Flex>
@@ -84,9 +86,23 @@ const WidgetEditComponent = ({ widgetsData, setWidgetsData, onIsValidate }) => {
   const renderTabContent = () => {
     switch (activeTab) {
       case TABS.SETTINGS:
-        return <SettingsComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} handleContinue={handleContinue} />;
+        return (
+          <SettingsComponent
+            widgetsData={widgetsData}
+            setWidgetsData={setWidgetsData}
+            handleContinue={handleContinue}
+            isValidate={isValidate}
+          />
+        );
       case TABS.CONTENT:
-        return <ContentComponent widgetsData={widgetsData} setWidgetsData={setWidgetsData} handleContinue={handleContinue} />;
+        return (
+          <ContentComponent
+            widgetsData={widgetsData}
+            setWidgetsData={setWidgetsData}
+            handleContinue={handleContinue}
+            isValidate={isValidate}
+          />
+        );
       default:
         return <TabSelector tabs={tabsMenu} onSelect={setActiveTab} />;
     }

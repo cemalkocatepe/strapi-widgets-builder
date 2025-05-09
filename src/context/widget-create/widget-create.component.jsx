@@ -14,15 +14,15 @@ const WidgetCreateComponent = ({ widgetsData, setWidgetsData }) => {
   const setActiveWidgetData = useWidgetStore((state) => state.setActiveWidgetData);
 
   const handleWidgetCreate = (widgetId) => {
-    const widgetItemValue = widgetsValue[widgetId]; // widgetId'ye göre widgetItemValue alıyoruz
+    const widgetItemValue = widgetsValue[widgetId];
     const widgetItem = {
       id: widgetId,
       uuid: uuidv4(),
       ...widgetItemValue,
     };
-    setWidgetsData([...widgetsData, widgetItem]); // yeni widgetItem'ı widgetsData props'a ekliyoruz
-    setActiveWidgetData(widgetItem); // zustand store'a widgetItem'ı gönderiyoruz
-    setActivePage("widget-edit"); // tab widget-edit'e yönlendiriyoruz
+    setWidgetsData([...widgetsData, widgetItem]);
+    setActiveWidgetData(widgetItem);
+    setActivePage("widget-edit");
   };
 
   return (

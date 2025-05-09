@@ -38,14 +38,14 @@ const WidgetListComponent = ({ widgetsData, setWidgetsData }) => {
                     <IconButtonGroup>
                       <IconButton
                         onClick={() => handleWidgetItemEdit(widget.uuid)} // Düzenle butonuna tıklandığında yapılacak işlemler
-                        label="Düzenle"
-                        icon={<Pencil />}
-                      />
+                        label="Düzenle">
+                        <Pencil />
+                      </IconButton>
                       <IconButton
                         onClick={() => handleWidgetItemDelete(widget.uuid)} // Sil butonuna tıklandığında yapılacak işlemler
-                        label="Sil"
-                        icon={<Trash />}
-                      />
+                        label="Sil">
+                        <Trash />
+                      </IconButton>
                     </IconButtonGroup>
                   </Box>
                 </Flex>

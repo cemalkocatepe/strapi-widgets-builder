@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { startCase } from "lodash/string";
 import { uniq } from "lodash/array";
-import { Box, Field, FieldLabel, FieldError, Textarea } from "@strapi/design-system";
+import { Box, Field, Textarea } from "@strapi/design-system";
 import useWidgetStore from "../../../store/useWidgetStore";
 
 const TextareaComponent = (props) => {
@@ -33,8 +33,8 @@ const TextareaComponent = (props) => {
 
   return (
     <Box padding={3}>
-      <Field name={props.name} required={props.require} error={isError}>
-        <FieldLabel style={{ marginBottom: 10, fontSize: 12 }}>{startCase(props.name)}</FieldLabel>
+      <Field.Root name={props.name} required={props.require} error={isError}>
+        <Field.Label style={{ marginBottom: 10, fontSize: 12 }}>{startCase(props.name)}</Field.Label>
         <Textarea
           placeholder="Please fill this area"
           value={inputValue}
@@ -42,7 +42,7 @@ const TextareaComponent = (props) => {
           error={isError}
           onChange={handleChangeField}
         />
-      </Field>
+      </Field.Root>
     </Box>
   );
 };

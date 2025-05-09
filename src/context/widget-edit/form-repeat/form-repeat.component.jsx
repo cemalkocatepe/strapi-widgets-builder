@@ -53,14 +53,14 @@ const FormRepeatComponent = ({ name, /* formType, */ activeWidgetData, setActive
                     <IconButtonGroup>
                       <IconButton
                         onClick={() => handleWidgetItemEdit(item.uuid)} // Düzenle butonuna tıklandığında yapılacak işlemler
-                        label="Düzenle"
-                        icon={<Pencil />}
-                      />
+                        label="Düzenle">
+                        <Pencil />
+                      </IconButton>
                       <IconButton
                         onClick={() => handleWidgetItemDelete(item.uuid)} // Sil butonuna tıklandığında yapılacak işlemler
-                        label="Sil"
-                        icon={<Trash />}
-                      />
+                        label="Sil">
+                        <Trash />
+                      </IconButton>
                     </IconButtonGroup>
                   </Box>
                 </Flex>
@@ -73,9 +73,9 @@ const FormRepeatComponent = ({ name, /* formType, */ activeWidgetData, setActive
         <IconButton
           variant="secondary"
           onClick={() => handleWidgetItemAdd(activeWidgetData.id)} // Düzenle butonuna tıklandığında yapılacak işlemler
-          label="Ekle"
-          icon={<Plus />}
-        />
+          label="Ekle">
+          <Plus />
+        </IconButton>
       </Flex>
     </>
   );
